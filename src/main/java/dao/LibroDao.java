@@ -4,8 +4,8 @@ import modelo.LibroModelo;
 
 public class LibroDao extends GenericDAO<LibroModelo>{
 
-	public LibroDao(Class<LibroModelo> clase) {
-		super(clase);
+	public LibroDao() {
+		super(LibroModelo.class);
 	}
 	
 }

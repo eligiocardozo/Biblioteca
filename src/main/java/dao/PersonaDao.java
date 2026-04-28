@@ -4,8 +4,8 @@ import modelo.PersonaModelo;
 
 public class PersonaDao extends GenericDAO<PersonaModelo>{
 
-	public PersonaDao(Class<PersonaModelo> clase) {
-		super(clase);
+	public PersonaDao() {
+		super(PersonaModelo.class);
 	}
 
 }

@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity(name = "Prestamo")
 public class PrestamoModelo {
@@ -15,10 +16,11 @@ public class PrestamoModelo {
 	@Column(name = "Pr_idPrestamo")
 	private Integer idPrestamo;
 	
-	//falta idUsuario
+	@ManyToOne(optional = false)
+	private UsuarioModelo usuario;
 	
-	//falta idPersona
-	
+	@ManyToOne(optional = false)
+	private PersonaModelo persona;
 	
 	private Date fecha;
 	
@@ -70,6 +72,22 @@ public class PrestamoModelo {
 
 	public void setPlazo(int plazo) {
 		this.plazo = plazo;
+	}
+
+	public UsuarioModelo getUsuario() {
+		return usuario;
+	}
+
+	public PersonaModelo getPersona() {
+		return persona;
+	}
+
+	public void setUsuario(UsuarioModelo usuario) {
+		this.usuario = usuario;
+	}
+
+	public void setPersona(PersonaModelo persona) {
+		this.persona = persona;
 	}
 	
 	

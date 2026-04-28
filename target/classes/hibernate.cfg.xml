@@ -7,12 +7,12 @@
    <session-factory>    
    	  <property name="connection.driver_class">org.postgresql.Driver</property> 
    	  
-   	  <property name="connection.url">jdbc:postgressql://localhost5433/bibliotec_db</property> 
+   	  <property name="connection.url">jdbc:postgresql://localhost:5433/bibliotec_db</property> 
    	  
    	  <property name="connection.username">postgres</property>  
       <property name="connection.password">123456</property>
       
-      <property name="dialect">org.hibernate.dialect.PostgreSQLDialet</property> 
+      <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property> 
        
       <property name="hbm2ddl.auto">update</property>
       
@@ -20,6 +20,16 @@
       <property name="format_sql">true</property>
       
       <property name="connection.pool_size">5</property>
+      
+      <mapping class="modelo.CategoriaModelo"/>
+      <mapping class="modelo.DetallePrestamoModelo"/>
+      <mapping class="modelo.LibroModelo"/>
+      <mapping class="modelo.PersonaModelo"/>
+      <mapping class="modelo.PrestamoModelo"/>
+      <mapping class="modelo.UsuarioModelo"/>
+      
        
    </session-factory>  
+   
+   
 </hibernate-configuration>

@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity(name ="Usuario")
 public class UsuarioModelo {
@@ -17,10 +18,11 @@ public class UsuarioModelo {
 	@Column(name = "Us_nombre_usuario", nullable = false, length = 45)
 	private String nombre_usuario;
 	
-	@Column(name = "Us_contraseña", nullable = false, length = 45)
-	private String contraseña;
+	@Column(name = "Us_password", nullable = false, length = 45)
+	private String password;
 	
-	// falta idPersona
+	@ManyToOne(optional = false)
+	private PersonaModelo personaModelo;
 
 	public UsuarioModelo() {
 		super();
@@ -35,7 +37,7 @@ public class UsuarioModelo {
 	}
 
 	public String getContraseña() {
-		return contraseña;
+		return password;
 	}
 
 	public void setIdUsuario(Integer idUsuario) {
@@ -47,7 +49,7 @@ public class UsuarioModelo {
 	}
 
 	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+		this.password = contraseña;
 	}
 	
 	

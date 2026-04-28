@@ -66,5 +66,20 @@ public class GenericDAO<T> {
 			return query.getResultList();
 		}
 	}
+	
+	public void truncarTabla(String tabla) {
+		try (Session session = getSession()){
+			Transaction transaction = session.beginTransaction();
+			try {
+				session.createNativeMutationQuery("TRUNCATE TABLE "+ tabla+ " CASCADE").executeUpdate();
+				transaction.commit();
+			} catch (Exception e) {
+				if (transaction != null)
+					transaction.rollback();
+				e.printStackTrace();
+				throw e;
+			}
+		}
+	}
 
 }

@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity(name = "Libro")
 public class LibroModelo {
@@ -28,7 +29,8 @@ public class LibroModelo {
 	@Column(name = "Li_isbn", nullable = false, length = 45)
 	private String isbn;
 	
-	// falta el categoriaId
+	@ManyToOne(optional = false)
+	private CategoriaModelo categoria;
 	
 	@Column(name = "Li_editorial", nullable = false, length = 45)
 	private String editorial;
@@ -83,6 +85,14 @@ public class LibroModelo {
 
 	public void setEditorial(String editorial) {
 		this.editorial = editorial;
+	}
+
+	public CategoriaModelo getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(CategoriaModelo categoria) {
+		this.categoria = categoria;
 	}
 	
 	
