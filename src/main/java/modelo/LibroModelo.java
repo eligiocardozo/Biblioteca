@@ -95,7 +95,4 @@ public class LibroModelo {
 		this.categoria = categoria;
 	}
 	
-	
-	
-
 }

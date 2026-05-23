@@ -11,7 +11,10 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;
+
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+
 
 public class PantallaPrincipalVista extends JFrame {
 
@@ -32,50 +35,117 @@ public class PantallaPrincipalVista extends JFrame {
         setTitle("Biblioteca Virtual - Panel Principal");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1280, 720);
+        setLocationRelativeTo(null); 
+
         contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        contentPane.setBorder(new EmptyBorder(0, 0, 0, 0)); 
         setContentPane(contentPane);
         contentPane.setLayout(new BorderLayout(0, 0));
 
-        // --- PANEL LATERAL (MENU) ---
-        JPanel panelMenu = new JPanel();
-        panelMenu.setBackground(new Color(93, 64, 55));
-        contentPane.add(panelMenu, BorderLayout.WEST);
-        panelMenu.setLayout(new GridLayout(5, 1, 0, 10)); // 5 filas para botones
+       
+        Color colorMenuLateral = new Color(11, 63, 49);    
+        Color colorFondoCentro = new Color(241, 245, 249); 
+        Color colorTextoMenu   = Color.WHITE;             
+        Font fuente = new Font("Segoe UI", Font.BOLD, 14);
 
-        String[] botones = {"Catálogo", "Préstamos", "Usuarios", "Reportes", "Salir"};
-        for (String texto : botones) {
-            JButton btn = new JButton(texto);
-            btn.setFocusPainted(false);
-            btn.setBackground(new Color(121, 85, 72));
-            btn.setForeground(Color.WHITE);
-            btn.setFont(new Font("Tahoma", Font.PLAIN, 14));
-            panelMenu.add(btn);
-        }
-
-        // --- PANEL CENTRAL (CONTENIDO) ---
+       
         JPanel panelCentro = new JPanel();
-        panelCentro.setBackground(new Color(250, 243, 224)); // Crema
+        panelCentro.setBackground(colorFondoCentro);
         contentPane.add(panelCentro, BorderLayout.CENTER);
-        panelCentro.setLayout(null);
+        panelCentro.setLayout(null); 
+
+  
+        JPanel panelLateral = new JPanel();
+        panelLateral.setBackground(colorMenuLateral);
+        panelLateral.setBounds(0, 0, 280, 681);
+        panelLateral.setBorder(new EmptyBorder(120, 0, 0, 0));
+        panelCentro.add(panelLateral);
+        panelLateral.setLayout(new GridLayout(8, 1, 0, 10)); 
+
+       
         
-        JPanel panel = new JPanel();
-        panel.setBackground(new Color(130, 65, 0));
-        panel.setForeground(new Color(255, 255, 255));
-        panel.setBounds(0, 0, 446, 673);
-        panelCentro.add(panel);
-        panel.setLayout(new BorderLayout(0, 0));
+        JButton btnCategoria = new JButton("Catálogo");
+        btnCategoria.setIcon(new ImageIcon("C:\\Users\\ELIGIO ANDRES\\Desktop\\LenguajeII\\Bibliotec\\src\\main\\resources\\imagenes\\catalogo.png"));
+        btnCategoria.setFont(fuente);
+        btnCategoria.setForeground(colorTextoMenu);
+        btnCategoria.setHorizontalAlignment(SwingConstants.LEFT);
+        btnCategoria.setIconTextGap(15);
+        btnCategoria.setContentAreaFilled(false);
+        btnCategoria.setBorderPainted(false);
+        btnCategoria.setBorder(BorderFactory.createEmptyBorder(0, 25, 0, 0));
+        panelLateral.add(btnCategoria);
+
+        JButton btnPrestamo = new JButton("Préstamos");
+        btnPrestamo.setIcon(new ImageIcon("C:\\Users\\ELIGIO ANDRES\\Desktop\\LenguajeII\\Bibliotec\\src\\main\\resources\\imagenes\\prestamos.png"));
+        btnPrestamo.setFont(fuente);
+        btnPrestamo.setForeground(colorTextoMenu);
+        btnPrestamo.setHorizontalAlignment(SwingConstants.LEFT);
+        btnPrestamo.setIconTextGap(15);
+        btnPrestamo.setContentAreaFilled(false);
+        btnPrestamo.setBorder(BorderFactory.createEmptyBorder(0, 25, 0, 0));
+        panelLateral.add(btnPrestamo);
+
+        JButton btnUsuarios = new JButton("Usuarios");
+        btnUsuarios.setIcon(new ImageIcon("C:\\Users\\ELIGIO ANDRES\\Desktop\\LenguajeII\\Bibliotec\\src\\main\\resources\\imagenes\\usuarios.png"));
+        btnUsuarios.setFont(fuente);
+        btnUsuarios.setForeground(colorTextoMenu);
+        btnUsuarios.setHorizontalAlignment(SwingConstants.LEFT);
+        btnUsuarios.setIconTextGap(15);
+        btnUsuarios.setContentAreaFilled(false);
+        btnUsuarios.setBorderPainted(false);
+        btnUsuarios.setBorder(BorderFactory.createEmptyBorder(0, 25, 0, 0));
+        panelLateral.add(btnUsuarios);
+
+        JButton btnReportes = new JButton("Reportes");
+        btnReportes.setIcon(new ImageIcon("C:\\Users\\ELIGIO ANDRES\\Desktop\\LenguajeII\\Bibliotec\\src\\main\\resources\\imagenes\\reportes.png"));
+        btnReportes.setFont(fuente);
+        btnReportes.setForeground(colorTextoMenu);
+        btnReportes.setHorizontalAlignment(SwingConstants.LEFT);
+        btnReportes.setIconTextGap(15);
+        btnReportes.setContentAreaFilled(false);
+        btnReportes.setBorderPainted(false);
+        btnReportes.setBorder(BorderFactory.createEmptyBorder(0, 25, 0, 0));
+        panelLateral.add(btnReportes);
+
+        JButton btnNewButton = new JButton("Configuración");
+        btnNewButton.setIcon(new ImageIcon("C:\\Users\\ELIGIO ANDRES\\Desktop\\LenguajeII\\Bibliotec\\src\\main\\resources\\imagenes\\ajustes.png"));
+        btnNewButton.setFont(fuente);
+        btnNewButton.setForeground(colorTextoMenu);
+        btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);
+        btnNewButton.setIconTextGap(15);
+        btnNewButton.setContentAreaFilled(false);
+        btnNewButton.setBorderPainted(false);
+        btnNewButton.setBorder(BorderFactory.createEmptyBorder(0, 25, 0, 0));
+        panelLateral.add(btnNewButton);
+
+        JPanel panelBarraSuperior = new JPanel();
+        panelBarraSuperior.setBackground(Color.WHITE); 
+        panelBarraSuperior.setBounds(280, 0, 984, 65);
+        panelCentro.add(panelBarraSuperior);
+        panelBarraSuperior.setLayout(null);
+
         
-        JPanel panel_1 = new JPanel();
-        panel_1.setBackground(new Color(130, 65, 0));
-        panel_1.setBounds(0, 0, 1184, 81);
-        panelCentro.add(panel_1);
-        panel_1.setLayout(null);
+        JPanel panelBuscadorContenedor = new JPanel();
+        panelBuscadorContenedor.setBackground(new Color(241, 245, 249)); 
+        panelBuscadorContenedor.setBounds(30, 12, 400, 40);
+        panelBarraSuperior.add(panelBuscadorContenedor);
+        panelBuscadorContenedor.setLayout(null);
+
+        JLabel lblBuscarHint = new JLabel("Buscar libros, autores, códigos...");
+        lblBuscarHint.setForeground(new Color(148, 163, 184)); 
+        lblBuscarHint.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        lblBuscarHint.setBounds(15, 0, 330, 40);
+        panelBuscadorContenedor.add(lblBuscarHint);
+
         
-        JLabel lblWelcome = new JLabel("Bienvenido al Sistema de Gestión");
-        lblWelcome.setBounds(811, 23, 350, 30);
-        panel_1.add(lblWelcome);
-        lblWelcome.setHorizontalAlignment(SwingConstants.CENTER);
-        lblWelcome.setFont(new Font("Tahoma", Font.ITALIC, 18));
+        JButton btnLupa = new JButton("");
+        btnLupa.setIcon(new ImageIcon("C:\\Users\\ELIGIO ANDRES\\Desktop\\LenguajeII\\Bibliotec\\src\\main\\resources\\imagenes\\lupa.png"));
+        btnLupa.setContentAreaFilled(false);
+        btnLupa.setBorderPainted(false);
+        btnLupa.setFocusPainted(false);
+        btnLupa.setBounds(350, 0, 50, 40);
+        panelBuscadorContenedor.add(btnLupa);      
+        
     }
+
 }
