@@ -14,6 +14,8 @@ import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import componentes.JPanelPersonalizado;
+import componentes.JButonCom;
 
 
 public class PantallaPrincipalVista extends JFrame {
@@ -32,6 +34,7 @@ public class PantallaPrincipalVista extends JFrame {
     }
 
     public PantallaPrincipalVista() {
+    	setExtendedState(MAXIMIZED_BOTH);
         setTitle("Biblioteca Virtual - Panel Principal");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1280, 720);
@@ -61,11 +64,10 @@ public class PantallaPrincipalVista extends JFrame {
         panelLateral.setBorder(new EmptyBorder(120, 0, 0, 0));
         panelCentro.add(panelLateral);
         panelLateral.setLayout(new GridLayout(8, 1, 0, 10)); 
-
-       
+     
         
         JButton btnCategoria = new JButton("Catálogo");
-        btnCategoria.setIcon(new ImageIcon("C:\\Users\\ELIGIO ANDRES\\Desktop\\LenguajeII\\Bibliotec\\src\\main\\resources\\imagenes\\catalogo.png"));
+        btnCategoria.setIcon(new ImageIcon("C:\\Users\\ELIGIO ANDRES\\Desktop\\LenguajeII\\Bibliotec\\Biblioteca\\src\\main\\resources\\imagenes\\catalogo.png"));
         btnCategoria.setFont(fuente);
         btnCategoria.setForeground(colorTextoMenu);
         btnCategoria.setHorizontalAlignment(SwingConstants.LEFT);
@@ -76,7 +78,7 @@ public class PantallaPrincipalVista extends JFrame {
         panelLateral.add(btnCategoria);
 
         JButton btnPrestamo = new JButton("Préstamos");
-        btnPrestamo.setIcon(new ImageIcon("C:\\Users\\ELIGIO ANDRES\\Desktop\\LenguajeII\\Bibliotec\\src\\main\\resources\\imagenes\\prestamos.png"));
+        btnPrestamo.setIcon(new ImageIcon("C:\\Users\\ELIGIO ANDRES\\Desktop\\LenguajeII\\Bibliotec\\Biblioteca\\src\\main\\resources\\imagenes\\prestamos.png"));
         btnPrestamo.setFont(fuente);
         btnPrestamo.setForeground(colorTextoMenu);
         btnPrestamo.setHorizontalAlignment(SwingConstants.LEFT);
@@ -86,7 +88,7 @@ public class PantallaPrincipalVista extends JFrame {
         panelLateral.add(btnPrestamo);
 
         JButton btnUsuarios = new JButton("Usuarios");
-        btnUsuarios.setIcon(new ImageIcon("C:\\Users\\ELIGIO ANDRES\\Desktop\\LenguajeII\\Bibliotec\\src\\main\\resources\\imagenes\\usuarios.png"));
+        btnUsuarios.setIcon(new ImageIcon("C:\\Users\\ELIGIO ANDRES\\Desktop\\LenguajeII\\Bibliotec\\Biblioteca\\src\\main\\resources\\imagenes\\usuarios.png"));
         btnUsuarios.setFont(fuente);
         btnUsuarios.setForeground(colorTextoMenu);
         btnUsuarios.setHorizontalAlignment(SwingConstants.LEFT);
@@ -97,7 +99,7 @@ public class PantallaPrincipalVista extends JFrame {
         panelLateral.add(btnUsuarios);
 
         JButton btnReportes = new JButton("Reportes");
-        btnReportes.setIcon(new ImageIcon("C:\\Users\\ELIGIO ANDRES\\Desktop\\LenguajeII\\Bibliotec\\src\\main\\resources\\imagenes\\reportes.png"));
+        btnReportes.setIcon(new ImageIcon("C:\\Users\\ELIGIO ANDRES\\Desktop\\LenguajeII\\Bibliotec\\Biblioteca\\src\\main\\resources\\imagenes\\reportes.png"));
         btnReportes.setFont(fuente);
         btnReportes.setForeground(colorTextoMenu);
         btnReportes.setHorizontalAlignment(SwingConstants.LEFT);
@@ -144,8 +146,7 @@ public class PantallaPrincipalVista extends JFrame {
         btnLupa.setBorderPainted(false);
         btnLupa.setFocusPainted(false);
         btnLupa.setBounds(350, 0, 50, 40);
-        panelBuscadorContenedor.add(btnLupa);      
+        panelBuscadorContenedor.add(btnLupa);
         
     }
-
 }
