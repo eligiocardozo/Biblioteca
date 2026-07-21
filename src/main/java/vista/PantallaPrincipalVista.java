@@ -11,16 +11,24 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;
+import java.awt.Component;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import componentes.JPanelPersonalizado;
 import componentes.JButonCom;
+import controlador.PersonaController;
 
 
 public class PantallaPrincipalVista extends JFrame {
 
     private JPanel contentPane;
+    private JPanel panelContenido;
+    private JPanel panelCentro;
+    private JPanel panelLateral;
+    private JPanel panelBarraSuperior;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
@@ -34,11 +42,11 @@ public class PantallaPrincipalVista extends JFrame {
     }
 
     public PantallaPrincipalVista() {
-    	setExtendedState(MAXIMIZED_BOTH);
         setTitle("Biblioteca Virtual - Panel Principal");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1280, 720);
         setLocationRelativeTo(null); 
+        setExtendedState(MAXIMIZED_BOTH);
 
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(0, 0, 0, 0)); 
@@ -52,13 +60,19 @@ public class PantallaPrincipalVista extends JFrame {
         Font fuente = new Font("Segoe UI", Font.BOLD, 14);
 
        
-        JPanel panelCentro = new JPanel();
+        panelCentro = new JPanel();
         panelCentro.setBackground(colorFondoCentro);
         contentPane.add(panelCentro, BorderLayout.CENTER);
         panelCentro.setLayout(null); 
+        panelCentro.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                ajustarLayout();
+            }
+        });
 
   
-        JPanel panelLateral = new JPanel();
+        panelLateral = new JPanel();
         panelLateral.setBackground(colorMenuLateral);
         panelLateral.setBounds(0, 0, 280, 681);
         panelLateral.setBorder(new EmptyBorder(120, 0, 0, 0));
@@ -96,6 +110,11 @@ public class PantallaPrincipalVista extends JFrame {
         btnUsuarios.setContentAreaFilled(false);
         btnUsuarios.setBorderPainted(false);
         btnUsuarios.setBorder(BorderFactory.createEmptyBorder(0, 25, 0, 0));
+        btnUsuarios.addActionListener(e -> {
+            PersonaVista personaVista = new PersonaVista();
+            new PersonaController(personaVista);
+            mostrarEnPanelContenido(personaVista);
+        });
         panelLateral.add(btnUsuarios);
 
         JButton btnReportes = new JButton("Reportes");
@@ -120,11 +139,17 @@ public class PantallaPrincipalVista extends JFrame {
         btnNewButton.setBorder(BorderFactory.createEmptyBorder(0, 25, 0, 0));
         panelLateral.add(btnNewButton);
 
-        JPanel panelBarraSuperior = new JPanel();
+        panelBarraSuperior = new JPanel();
         panelBarraSuperior.setBackground(Color.WHITE); 
         panelBarraSuperior.setBounds(280, 0, 984, 65);
         panelCentro.add(panelBarraSuperior);
         panelBarraSuperior.setLayout(null);
+
+        panelContenido = new JPanel();
+        panelContenido.setBackground(colorFondoCentro);
+        panelContenido.setBounds(280, 65, 984, 616);
+        panelCentro.add(panelContenido);
+        panelContenido.setLayout(null);
 
         
         JPanel panelBuscadorContenedor = new JPanel();
@@ -148,5 +173,33 @@ public class PantallaPrincipalVista extends JFrame {
         btnLupa.setBounds(350, 0, 50, 40);
         panelBuscadorContenedor.add(btnLupa);
         
+        ajustarLayout();
+    }
+
+    private void ajustarLayout() {
+        int ancho = panelCentro.getWidth();
+        int alto = panelCentro.getHeight();
+        if (ancho <= 0 || alto <= 0)
+            return;
+
+        panelLateral.setBounds(0, 0, 280, alto);
+        panelBarraSuperior.setBounds(280, 0, ancho - 280, 65);
+        panelContenido.setBounds(280, 65, ancho - 280, alto - 65);
+
+        if (panelContenido.getComponentCount() > 0) {
+            Component vistaActual = panelContenido.getComponent(0);
+            vistaActual.setBounds(0, 0, panelContenido.getWidth(), panelContenido.getHeight());
+        }
+
+        panelCentro.revalidate();
+        panelCentro.repaint();
+    }
+
+    private void mostrarEnPanelContenido(JPanel panelVista) {
+        panelContenido.removeAll();
+        panelVista.setBounds(0, 0, panelContenido.getWidth(), panelContenido.getHeight());
+        panelContenido.add(panelVista);
+        panelContenido.revalidate();
+        panelContenido.repaint();
     }
 }
