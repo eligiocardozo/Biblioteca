@@ -27,6 +27,9 @@ public class PersonaController implements InterfaceABM {
 		dao = new PersonaDao();
 		tabla = new ModeloTablaPersona();
 		this.vista.getTabla().setModel(tabla);
+		setAcciones();
+		cargarTabla("");
+		estadoInicial();
 	}
 
 	private void setAcciones() {
@@ -37,16 +40,22 @@ public class PersonaController implements InterfaceABM {
 					seleccionarRegistro();
 			}
 		});
-
 	}
 
 	private void cargarTabla(String filtro) {
-		if (filtro == null || filtro.isEmpty())
-			personas = dao.recuperarTodo();
-		else
-			personas = dao.buscarPorFiltro(filtro);
-		tabla.setLista(personas);
-		tabla.fireTableDataChanged();
+		try {
+			if (filtro == null || filtro.isEmpty())
+				personas = dao.recuperarTodo();
+			else
+				personas = dao.buscarPorFiltro(filtro);
+			tabla.setLista(personas);
+			tabla.fireTableDataChanged();
+		} catch (Exception e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null,
+					"No se pudo cargar la lista de personas:\n" + e.getMessage(),
+					"Error", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	private void estadoInicial() {
@@ -78,7 +87,7 @@ public class PersonaController implements InterfaceABM {
 
 	private void seleccionarRegistro() {
 		int fila = this.vista.getTabla().getSelectedRow();
-		if (fila < 0)
+		if (fila < 0 || personas == null || fila >= personas.size())
 			return;
 		persona = personas.get(fila);
 
