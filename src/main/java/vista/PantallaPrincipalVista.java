@@ -29,6 +29,7 @@ public class PantallaPrincipalVista extends JFrame {
     private JPanel panelCentro;
     private JPanel panelLateral;
     private JPanel panelBarraSuperior;
+    private PersonaVista personaVista;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
@@ -111,8 +112,10 @@ public class PantallaPrincipalVista extends JFrame {
         btnUsuarios.setBorderPainted(false);
         btnUsuarios.setBorder(BorderFactory.createEmptyBorder(0, 25, 0, 0));
         btnUsuarios.addActionListener(e -> {
-            PersonaVista personaVista = new PersonaVista();
-            new PersonaController(personaVista);
+            if (personaVista == null) {
+                personaVista = new PersonaVista();
+                new PersonaController(personaVista);
+            }
             mostrarEnPanelContenido(personaVista);
         });
         panelLateral.add(btnUsuarios);
