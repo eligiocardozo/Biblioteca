@@ -24,6 +24,7 @@ import componentes.JButonCom;
 import controlador.PersonaController;
 import controlador.CategoriaController;
 import controlador.LibroController;
+import controlador.PrestamoController;
 
 public class PantallaPrincipalVista extends JFrame {
 
@@ -35,13 +36,14 @@ public class PantallaPrincipalVista extends JFrame {
 	private JButton btnRegistros;
 	private JButton btnCatalogo;
 	private JButton btnReportes;
-	private JButton btnConfiguracion;
+	private JButton btnPrestamo;
 	private List<JButton> subItemsRegistros = new ArrayList<>();
 	private boolean registrosExpandido = false;
 
 	private PersonaVista personaVista;
 	private CategoriaVista categoriaVista;
 	private LibroVista libroVista;
+	private PrestamoVista prestamoVista;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(() -> {
@@ -127,22 +129,21 @@ public class PantallaPrincipalVista extends JFrame {
 			mostrarEnPanelContenido(libroVista);
 		});
 
-		JButton btnSubPrestamo = crearBotonMenu("Préstamo", "prestamos.png", fuente, colorTextoMenu, 45);
-		// Sin conectar todavía: falta el módulo de Préstamo.
-
-		JButton btnSubDetallePrestamo = crearBotonMenu("Detalle Préstamo", "prestamos.png", fuente, colorTextoMenu, 45);
-		// Sin conectar todavía: falta el módulo de Detalle Préstamo.
-
 		subItemsRegistros.add(btnSubUsuario);
 		subItemsRegistros.add(btnSubCategoria);
 		subItemsRegistros.add(btnSubPersona);
 		subItemsRegistros.add(btnSubLibro);
-		subItemsRegistros.add(btnSubPrestamo);
-		subItemsRegistros.add(btnSubDetallePrestamo);
 
 		btnReportes = crearBotonMenu("Reportes", "reportes.png", fuente, colorTextoMenu, 25);
 
-		btnConfiguracion = crearBotonMenu("Configuración", "ajustes.png", fuente, colorTextoMenu, 25);
+		btnPrestamo = crearBotonMenu("Préstamo", "prestamos.png", fuente, colorTextoMenu, 25);
+		btnPrestamo.addActionListener(e -> {
+			if (prestamoVista == null) {
+				prestamoVista = new PrestamoVista();
+				new PrestamoController(prestamoVista);
+			}
+			mostrarEnPanelContenido(prestamoVista);
+		});
 
 		reconstruirMenuLateral();
 
@@ -206,7 +207,7 @@ public class PantallaPrincipalVista extends JFrame {
 		if (registrosExpandido)
 			items.addAll(subItemsRegistros);
 		items.add(btnReportes);
-		items.add(btnConfiguracion);
+		items.add(btnPrestamo);
 
 		panelLateral.setLayout(new GridLayout(items.size(), 1, 0, 10));
 		for (Component c : items)

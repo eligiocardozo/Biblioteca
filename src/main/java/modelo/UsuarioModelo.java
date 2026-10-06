@@ -51,7 +51,18 @@ public class UsuarioModelo {
 	public void setContraseña(String contraseña) {
 		this.password = contraseña;
 	}
-	
-	
+
+	public PersonaModelo getPersonaModelo() {
+		return personaModelo;
+	}
+
+	public void setPersonaModelo(PersonaModelo personaModelo) {
+		this.personaModelo = personaModelo;
+	}
+
+	@Override
+	public String toString() {
+		return nombre_usuario;
+	}
 
 }

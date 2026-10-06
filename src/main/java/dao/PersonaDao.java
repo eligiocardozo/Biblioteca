@@ -22,4 +22,14 @@ public class PersonaDao extends GenericDAO<PersonaModelo>{
 		}
 	}
 
+	public PersonaModelo buscarPorCi(String ci) {
+		try (Session session = getSession()) {
+			String hql = "FROM Persona WHERE ci_persona = :ci";
+			Query<PersonaModelo> query = session.createQuery(hql, PersonaModelo.class);
+			query.setParameter("ci", ci);
+			List<PersonaModelo> resultado = query.getResultList();
+			return resultado.isEmpty() ? null : resultado.get(0);
+		}
+	}
+
 }

@@ -1,13 +1,17 @@
 package modelo;
 
 import java.util.Date;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity(name = "Prestamo")
 public class PrestamoModelo {
@@ -29,6 +33,9 @@ public class PrestamoModelo {
 	private Date fechaDevolucion;
 	
 	private int plazo;
+
+	@OneToMany(mappedBy = "prestamo", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<DetallePrestamoModelo> detalles;
 
 	public PrestamoModelo() {
 		super();
@@ -89,8 +96,13 @@ public class PrestamoModelo {
 	public void setPersona(PersonaModelo persona) {
 		this.persona = persona;
 	}
-	
-	
-	
+
+	public List<DetallePrestamoModelo> getDetalles() {
+		return detalles;
+	}
+
+	public void setDetalles(List<DetallePrestamoModelo> detalles) {
+		this.detalles = detalles;
+	}
 
 }
